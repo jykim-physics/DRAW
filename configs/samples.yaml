@@ -1,0 +1,14 @@
+pid_0_5:
+  ccbar: "/ccbar/pid_0_5_ccbar_recon_output_0*.root"
+  charged: "/charged/pid_0_5_charged_recon_output_0*.root"
+  mixed: "/mixed/pid_0_5_mixed_recon_output_0*.root"
+  uubar: "/uubar/pid_0_5_uubar_recon_output_0*.root"
+  ddbar: "/ddbar/pid_0_5_ddbar_recon_output_0*.root"
+  ssbar: "/ssbar/pid_0_5_ssbar_recon_output_0*.root"
+  taupair: "/taupair/pid_0_5_taupair_recon_output_0*.root"
+
+location:
+  kekcc: "/group/belle/users/jaeyoung/storage/01_recon/merge_generic_bkg"
+  lab: "/home/jykim/nas/storage/01_recon/merge_generic_bkg"
+  home: ""
+  laptop: "/media/jykim/ssd_T5/storage/01_recon/merge_generic_bkg"

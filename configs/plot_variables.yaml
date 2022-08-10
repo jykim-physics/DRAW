@@ -1,0 +1,27 @@
+vars:
+  - "D0_M" 
+  - "Dstarp_Q"
+  - "D0_cosHel_0"
+  - "Dstarp_CMS_p"
+  - "gamma_E"
+  - "gamma_clusterSecondMoment"
+  - "__ncandidates__"
+  - "__experiment__"
+  - "__run__"
+  - "__event__"
+  - "Dstarp_isSignal"
+  - "D0_isSignal"
+
+
+units:
+  D0_M: "M(D^0)"
+  Dstarp_Q: "D^{*+}_Q"
+  D0_cosHel_0: "\\mathrm{cos}Hel_0"
+  gamma_E: "E_{\\gamma}"
+  gamma_clusterSecondMoment: "clusterSecondmoment(\\gamma)"
+  __ncandidates__: "ncandidiates"
+  __experiment__: "experiment"
+  __run__: "run"
+  __event__: "event"
+  Dstarp_isSignal: "True Dstar"
+  D0_isSignal: "True D0"
