@@ -132,7 +132,7 @@ def generic_ntuple(loc=None,all_stack=None,file='file', vector='type', figname='
             file = sample_location[f_type]
             taupair_pd_df = get_data_in_module(file=file, sample=f_type, tree=tree,variables=variables)
             
-    pd_merge_df = pd.concat([ ccbar_pd_df, mixed_pd_df, charged_pd_df, uu_pd_df, dd_pd_df, ss_pd_df, tau_pd_df])
+    pd_merge_df = pd.concat([ ccbar_pd_df, mixed_pd_df, charged_pd_df, uubar_pd_df, ddbar_pd_df, ssbar_pd_df, taupair_pd_df])
 
     return pd_merge_df
 

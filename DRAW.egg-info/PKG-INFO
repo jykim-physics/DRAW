@@ -6,12 +6,9 @@ Home-page:
 Author: Jaeyoung Kim
 Author-email: jaeyoung97@yonsei.ac.kr
 License: jykim
-Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: jykim License 
 Description-Content-Type: text/markdown
 Provides-Extra: examples
 
 # Tools
-
-
