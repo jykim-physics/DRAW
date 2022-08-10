@@ -12,3 +12,4 @@ hist/stack_except_signal.py
 hist/stack_include_signal.py
 src/__init__.py
 src/read_yaml_to_dict.py
+src/sample_name.py

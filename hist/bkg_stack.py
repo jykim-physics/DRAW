@@ -63,7 +63,7 @@ def get_data_in_module(file='file', sample=None, tree='tree', base_filter=None,v
 
 def generic_ntuple(loc=None,all_stack=None,file='file', vector='type', figname='name',option=None, add_base_filter=None, add_t_filter=None, add_f_filter=None, bins=None, variables_dict=None, sample_location=None):
 
-
+    #variables=[]
     px = 1/plt.rcParams['figure.dpi'] 
     tree=vector
 
@@ -134,5 +134,6 @@ def generic_ntuple(loc=None,all_stack=None,file='file', vector='type', figname='
             
     pd_merge_df = pd.concat([ ccbar_pd_df, mixed_pd_df, charged_pd_df, uubar_pd_df, ddbar_pd_df, ssbar_pd_df, taupair_pd_df])
 
+    #variables.clear()
     return pd_merge_df
 
