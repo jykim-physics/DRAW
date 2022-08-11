@@ -8,8 +8,8 @@ DRAW.egg-info/top_level.txt
 hist/__init__.py
 hist/bkg_stack.py
 hist/get_data.py
-hist/stack_except_signal.py
 hist/stack_include_signal.py
 src/__init__.py
+src/combine_cuts.py
 src/read_yaml_to_dict.py
 src/sample_name.py
