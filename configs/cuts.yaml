@@ -6,7 +6,7 @@ phi_extraction:
 
 rho_extraction:
   - 'gamma_E>0.55'
-  - 'abs(rho_InvM - 0.77526)<0.150'
+  - 'abs(Rho_InvM - 0.77526)<0.150'
   - 'Dstarp_CMS_p > 2.72'
   - 'abs(Dstarp_Q - 0.00593)<0.0006'
 
