@@ -22,3 +22,13 @@ location:
   lab_local: "/home/jykim/Downloads/pid_0_5"
   home: ""
   laptop: "/media/jykim/ssd_T5/storage/01_recon/merge_generic_bkg"
+  lab_ssd: "/media/jykim/ssd_T5/storage/01_recon/merge_generic_bkg"
+
+massveto:
+  ccbar: "/ccbar/massveto_0_3_ccbar_recon_output_00.root"
+  charged: "/charged/massveto_0_3_charged_recon_output_00.root"
+  mixed: "/mixed/massveto_0_3_mixed_recon_output_00.root"
+  uubar: "/uubar/massveto_0_3_uubar_recon_output_00.root"
+  ddbar: "/ddbar/massveto_0_3_dbar_recon_output_00.root"
+  ssbar: "/ssbar/massveto_0_3_ssbar_recon_output_00.root"
+  taupair: "/taupair/massveto_0_3_taupair_recon_output_00.root"

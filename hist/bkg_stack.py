@@ -64,7 +64,7 @@ def get_data_in_module(file='file', sample=None, tree='tree', base_filter=None,v
 def generic_ntuple(loc=None,all_stack=None,file='file', vector='type', figname='name',option=None, add_base_filter=None, add_t_filter=None, add_f_filter=None, bins=None, variables_dict=None, sample_location=None):
 
     #variables=[]
-    px = 1/plt.rcParams['figure.dpi'] 
+    #px = 1/plt.rcParams['figure.dpi'] 
     tree=vector
 
 #     var=list(variables_dict.keys())
@@ -72,23 +72,23 @@ def generic_ntuple(loc=None,all_stack=None,file='file', vector='type', figname='
     variables = variables_dict['vars']
 
 
-    base_filter = '(D0_M>1.665 && D0_M<2.065) && (gamma_E>0.1)'  
+#     base_filter = '(D0_M>1.665 && D0_M<2.065) && (gamma_E>0.1)'  
     
-    true_filter = ' && (Dstarp_isSignal==1)'
-    false_filter = ' && (Dstarp_isSignal!=1)'
-    true_filter  = base_filter + true_filter
-    false_filter = base_filter + false_filter
+#     true_filter = ' && (Dstarp_isSignal==1)'
+#     false_filter = ' && (Dstarp_isSignal!=1)'
+#     true_filter  = base_filter + true_filter
+#     false_filter = base_filter + false_filter
 
-    if add_base_filter != None:
-        base_filter = base_filter + ' && ' + add_base_filter
-        true_filter = true_filter + ' && ' + add_base_filter
-        false_filter = false_filter + ' && ' + add_base_filter
-        print(true_filter)
-        print(false_filter)
+#     if add_base_filter != None:
+#         base_filter = base_filter + ' && ' + add_base_filter
+#         true_filter = true_filter + ' && ' + add_base_filter
+#         false_filter = false_filter + ' && ' + add_base_filter
+#         print(true_filter)
+#         print(false_filter)
 
-    if add_t_filter != None and add_f_filter != None:
-        true_filter = true_filter + ' && ' + add_t_filter
-        flase_filter = false_filter + ' && ' + add_f_filter
+#     if add_t_filter != None and add_f_filter != None:
+#         true_filter = true_filter + ' && ' + add_t_filter
+#         flase_filter = false_filter + ' && ' + add_f_filter
 
 
     if vector == 'omega':
