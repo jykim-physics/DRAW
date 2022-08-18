@@ -15,6 +15,11 @@ name:
   Rho_InvM : "M(/rho^0)"
   antiKstar_InvM : "M(/bar{K}^{*0})"
   Omega_InvM : "M(/omega)"
+  gamma_CMS_E : "E_{CMS}(gamma)"
+  gamma_genMotherID : "gamma_genMotherID"
+  gamma_genMotherPDG : "gamma_genMotherPDG"
+  
+  Pi0_Prob : ""
 units:
   D0_M: "mathrm{GeV}"
   Dstarp_Q: "mathrm{GeV}"
@@ -32,3 +37,7 @@ units:
   Rho_InvM : "mathrm{GeV}"
   antiKstar_InvM : "mathrm{GeV}"
   Omega_InvM : "mathrm{GeV}"
+  gamma_CMS_E : "mathrm{GeV}"
+  gamma_genMotherID : ""
+  gamma_genMotherPDG : ""
+  Pi0_Prob : ""
