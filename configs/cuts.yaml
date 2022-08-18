@@ -17,7 +17,7 @@ rho_extraction:
 antiKstar_extraction:
   - 'D0_M>1.665'
   - 'D0_M<2.065'
-  - 'gamma_E>0.3'
+  - 'gamma_E>0.55'
   - 'abs(antiKstar_InvM - 0.89555)<0.22'
   - 'Dstarp_CMS_p > 2.17'
   - 'abs(Dstarp_Q - 0.00593)<0.0006'

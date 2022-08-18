@@ -236,8 +236,11 @@ def draw_stack_except_signal(df=None, df_no_signal=None, vector=None,bins=None, 
     print(data_list.keys())
 
 
-def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name=None,plot_title=None, total_lumi=None):
-    variables = list(df.columns)
+def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name=None,plot_title=None, total_lumi=None, draw_variables=None):
+    if draw_variables==None:
+        variables = list(df.columns)
+    else:
+        variables = draw_variables
     px = 1/plt.rcParams['figure.dpi']
     plt.figure(figsize=(576*px, 396*px))
     
