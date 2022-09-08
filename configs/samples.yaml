@@ -32,3 +32,12 @@ massveto:
   ddbar: "/ddbar/massveto_0_3_ddbar_recon_output_00.root"
   ssbar: "/ssbar/massveto_0_3_ssbar_recon_output_00.root"
   taupair: "/taupair/massveto_0_3_taupair_recon_output_00.root"
+  
+train_v2:
+  ccbar: "/ccbar/v2_extraction_no_signal_ccbar_recon_output_0*.root"
+  charged: "/charged/v2_extraction_no_signal_charged_recon_output_0*.root"
+  mixed: "/mixed/v2_extraction_no_signal_mixed_recon_output_0*.root"
+  ddbar: "/ddbar/v2_extraction_no_signal_ddbar_recon_output_0*.root"
+  ssbar: "/ssbar/v2_extraction_no_signal_ssbar_recon_output_0*.root"
+  uubar: "/uubar/v2_extraction_no_signal_uubar_recon_output_0*.root"
+  taupair: "/taupair/v2_extraction_no_signal_taupair_recon_output_0*.root"
