@@ -19,4 +19,4 @@ def read_yaml_to_dict(cfg_name):
 
     return cfg
 
-print(read_yaml_to_dict("vegetables"))
+# print(read_yaml_to_dict("vegetables"))
