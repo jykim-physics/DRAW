@@ -51,3 +51,12 @@ train_v2_pre:
   ssbar: "/ssbar/train_v2_pre_ssbar_recon_output_0*.root"
   uubar: "/uubar/train_v2_pre_uubar_recon_output_0*.root"
   taupair: "/taupair/train_v2_pre_taupair_recon_output_0*.root"
+  
+train_v2_extraction_pi0veto:
+  ccbar: "/ccbar/train_v2_extraction_pi0veto_ccbar_recon_output_0*.root"
+  charged: "/charged/train_v2_extraction_pi0veto_charged_recon_output_0*.root"
+  mixed: "/mixed/train_v2_extraction_pi0veto_mixed_recon_output_0*.root"
+  ddbar: "/ddbar/train_v2_extraction_pi0veto_ddbar_recon_output_0*.root"
+  ssbar: "/ssbar/train_v2_extraction_pi0veto_ssbar_recon_output_0*.root"
+  uubar: "/uubar/train_v2_extraction_pi0veto_uubar_recon_output_0*.root"
+  taupair: "/taupair/train_v2_extraction_pi0veto_taupair_recon_output_0*.root"  

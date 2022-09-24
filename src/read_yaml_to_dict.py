@@ -2,8 +2,9 @@
 from os import path
 from yaml import safe_load
 
-from DRAW import __file__ as package_init_path
-
+# from DRAW import __file__ as package_init_path
+# import __file__ as package_init_path
+package_init_path = __file__
 def read_yaml_to_dict(cfg_name):
 
     cfg_path = path.dirname(package_init_path) + f"/configs/{cfg_name}.yaml"
@@ -12,4 +13,4 @@ def read_yaml_to_dict(cfg_name):
 
     return cfg
 
-print(read_yaml_to_dict(vegetables))
+# print(read_yaml_to_dict(vegetables))

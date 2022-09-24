@@ -1,31 +1,19 @@
 phi_extraction:
-  - 'D0_M>1.665'
-  - 'D0_M<2.065'
-  - 'gamma_E>0.55'
   - 'abs(Phi_InvM - 1.0195)<0.011'
   - 'Dstarp_CMS_p > 2.42'
   - 'abs(Dstarp_Q - 0.00593)<0.0006'
 
 rho_extraction:
-  - 'D0_M>1.665'
-  - 'D0_M<2.065'
-  - 'gamma_E>0.55'
   - 'abs(Rho_InvM - 0.77526)<0.150'
   - 'Dstarp_CMS_p > 2.72'
   - 'abs(Dstarp_Q - 0.00593)<0.0006'
 
 antiKstar_extraction:
-  - 'D0_M>1.665'
-  - 'D0_M<2.065'
-  - 'gamma_E>0.55'
   - 'abs(antiKstar_InvM - 0.89555)<0.22'
   - 'Dstarp_CMS_p > 2.17'
   - 'abs(Dstarp_Q - 0.00593)<0.0006'
 
 omega_extraction:
-  - 'D0_M>1.665'
-  - 'D0_M<2.065'
-  - 'gamma_E>0.55'
-  - 'abs(Omega_InvM - 0.78265)<0.020'
+  - 'abs(Omega_InvM - 0.78265)<0.015'
   - 'Dstarp_CMS_p > 2.7'
   - 'abs(Dstarp_Q - 0.00593)<0.0006'

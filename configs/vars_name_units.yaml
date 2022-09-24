@@ -12,14 +12,14 @@ name:
   Dstarp_isSignal: "Dstarp isSignal"
   D0_isSignal: "D0 isSignal"
   Phi_InvM : "M(/phi)"
-  Rho_InvM : "M(/rho^0)"
-  antiKstar_InvM : "M(/bar{K}^{*0})"
+  Rho_InvM : "M(rho^0)"
+  antiKstar_InvM : "M(bar{K}^{*0})"
   Omega_InvM : "M(/omega)"
   gamma_CMS_E : "E_{CMS}(gamma)"
   gamma_genMotherID : "gamma_genMotherID"
   gamma_genMotherPDG : "gamma_genMotherPDG"
-  
-  Pi0_Prob : ""
+  Pi0_Prob : $\pi^0$ Probability
+  Eta_Prob : ""
 units:
   D0_M: "mathrm{GeV}"
   Dstarp_Q: "mathrm{GeV}"
@@ -41,3 +41,4 @@ units:
   gamma_genMotherID : ""
   gamma_genMotherPDG : ""
   Pi0_Prob : ""
+  Eta_Prob : ""

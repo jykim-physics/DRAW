@@ -1,7 +1,8 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import numpy as np
+from read_yaml_to_dict import read_yaml_to_dict
 def b2blues(n=5):
     return sns.color_palette("PuBuGn_d", n)
 
@@ -185,7 +186,7 @@ def draw_stack_except_signal(df=None, df_no_signal=None, vector=None,bins=None, 
         
         
             
-            
+        plt.figure(figsize=(576*px, 396*px))
         plt.hist(data_list[vector][var], bins=bins, histtype='stepfilled', stacked=True,label=labels,color=colors,edgecolor='black')
         plt.legend(bbox_to_anchor=(1.078,1))
         ax = plt.gca()
@@ -236,13 +237,16 @@ def draw_stack_except_signal(df=None, df_no_signal=None, vector=None,bins=None, 
     print(data_list.keys())
 
 
-def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name=None,plot_title=None, total_lumi=None, draw_variables=None):
+def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name=None,plot_title=None, total_lumi=None, draw_variables=None,figname=None):
+    
+    bins_range = read_yaml_to_dict('bins')
+    print(bins_range['D0_M'][0])
     if draw_variables==None:
         variables = list(df.columns)
     else:
         variables = draw_variables
     px = 1/plt.rcParams['figure.dpi']
-    plt.figure(figsize=(576*px, 396*px))
+    
     
     ccbar_bkg = df[df['class']=='ccbar']
     signal    = df[df['Dstarp_isSignal']==1]
@@ -273,10 +277,17 @@ def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name
         data_merge_pd = pd.concat([mixed_bkg[var], charged_bkg[var], uubar_bkg[var], ddbar_bkg[var], ssbar_bkg[var], taupair_bkg[var], ccbar_bkg[var] ], ignore_index=True)
         
         
+        if var in list(bins_range.keys()):
+            if var in list(['Dstarp_CMS_p']):
+                changed_bins = np.linspace(*eval(bins_range[var][vector][0]))
+                print(changed_bins)
+            else:
+                changed_bins = np.linspace(*eval(bins_range[var][0]))
             
+            plt.hist(data_list[vector][var], bins=changed_bins, histtype='stepfilled', stacked=True,label=labels,color=colors,edgecolor='black')
             
-        plt.hist(data_list[vector][var], bins=bins, histtype='stepfilled', stacked=True,label=labels,color=colors,edgecolor='black')
-        plt.legend(bbox_to_anchor=(1.078,1))
+        else:
+            plt.hist(data_list[vector][var], bins=bins, histtype='stepfilled', stacked=True,label=labels,color=colors,edgecolor='black')
         ax = plt.gca()
         
         
@@ -285,16 +296,33 @@ def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name
         
         if var_unit[var]=="":
             
-            xlabel = "$" + var_name[var] + "$"
+#             xlabel = "$" + var_name[var] + "$"
+            xlabel =  var_name[var]
         else:    
-            xlabel = "$" + var_name[var] + "$ $[" + var_unit[var] + "]$"
+            print(str(var_name[var]))
+            CORRECT_VAR_NAME_DICT = {"antiKstar_InvM":r"M(\bar{K}^{*0})", "Rho_InvM": r"M(\rho^0)"}
+            if var in list(CORRECT_VAR_NAME_DICT.keys()):
+                var_name[var] = CORRECT_VAR_NAME_DICT[var]
+            else:
+                pass
+            xlabel = "$" + var_name[var] + " \; [" + str(var_unit[var]) + "]$"
+            print(xlabel)
         ax.set_xlabel(xlabel)
+        
+        exceptlist = ['__ncandidates__','__experiment__','__run__', '__event__','D0_isSignal','Dstarp_isSignal'] 
+        if var in exceptlist:
+            pass
+        elif var in list(['D0_M','Dstarp_CMS_p','Phi_InvM','Rho_InvM','antiKstar_InvM','Omega_InvM']):
+            ax.set_xlim(changed_bins[0], changed_bins[-1])
+            width = changed_bins[1]-changed_bins[0]
+        else:
+            ax.set_xlim(data_merge_pd.min(), data_merge_pd.max())  
+            x_axis = ax.get_xbound()
+            width = (x_axis[1] - x_axis[0])/bins  
 
-        x_axis = ax.get_xbound()
-        width = (x_axis[1] - x_axis[0])/bins  
         
         
-        ax2 = ax.twinx()
+#         ax2 = ax.twinx()
 
         
 
@@ -303,16 +331,72 @@ def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name
         else:
             ax.set_ylabel('Entries'+' /' + '$(' + ' '  + "{0:.3f}".format(width).rstrip('0').rstrip('.') + var_unit[var] + ' )$')
             
-        exceptlist = ['__ncandidates__','__experiment__','__run__', '__event__','D0_isSignal','Dstarp_isSignal'] 
-        if var in exceptlist:
-            pass
-        else:
-            ax.set_xlim(data_merge_pd.min(), data_merge_pd.max())  
-              
 
-           
+        if var == "Pi0_Prob":
+            #plt.yscale("log")
+            plt.axvline(x=[0.9], ymin=0, ymax=0.9, color='r', ls='--', lw=2)
             
+            
+        if var == "D0_M":
+            if vector == 'phi':
+                pass
+#                 ax.set_ylim(0, 4000)
+#                 plt.ylim(0,4000)
+            if vector == 'rho':
+                pass
+#                 ax.set_ylim(0, 140000)
+#                 plt.ylim(0,140000)
+#                 ax.set_ylim(0, 125000)
+#                 plt.ylim(0,125000)
+            ax.set_xlim(1.665, 2.065)
+            plt.xlim(1.665,2.065)
+        elif var == "Phi_InvM":
+            plt.axvline(x=[1.0195-0.011], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+            plt.axvline(x=[1.0195+0.011], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+        elif var == "Rho_InvM":
+            plt.axvline(x=[0.77526-0.150], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+            plt.axvline(x=[0.77526+0.150], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+        elif var == "antiKstar_InvM":
+            plt.axvline(x=[0.89555-0.06], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+            plt.axvline(x=[0.89555+0.06], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+        elif var == "Omega_InvM":
+            plt.axvline(x=[0.78265-0.015], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+            plt.axvline(x=[0.78265+0.015], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+        elif var == "Dstarp_CMS_p":
+            if vector == 'phi':
+                plt.axvline(x=[2.42], ymin=0, ymax=0.85, color='r', ls='--', lw=2)
+            elif vector == 'rho':
+                plt.axvline(x=[2.72], ymin=0, ymax=0.85, color='r', ls='--', lw=2)     
+            elif vector == 'antiKstar':
+                plt.axvline(x=[2.30], ymin=0, ymax=0.85, color='r', ls='--', lw=2)
+            elif vector == 'omega':
+                plt.axvline(x=[2.70], ymin=0, ymax=0.85, color='r', ls='--', lw=2)                  
+        elif var == "Dstarp_Q":
+            if vector == 'phi' or 'rho':
+                plt.axvline(x=[0.00593-0.0006], ymin=0, ymax=0.9, color='r', ls='--', lw=2)
+                plt.axvline(x=[0.00593+0.0006], ymin=0, ymax=0.9, color='r', ls='--', lw=2)
+
+                
+                
+        else:
+            pass
+
+        # Shrink current axis by 20%
+        box = ax.get_position()
+        ax.set_position([box.x0, box.y0, box.width , box.height])
+
+        # Put a legend to the right of the current axis
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))        
+                
+#         ax.legend(bbox_to_anchor=(1.05, 1))
+#         plt.legend(bbox_to_anchor=(1.05,1))
+#         plt.legend(loc='best',px=1.078, py=1)
+#         plt.tight_layout()   
         plt.title(plot_title)
+        
+        full_figname = "/home/jykim/nas/plots/genericMC/" + vector + "/" + var + "_" + figname + ".png"
+        plt.savefig( full_figname,bbox_inches = 'tight' ) 
+        
         plt.show()
         plt.clf()
         
