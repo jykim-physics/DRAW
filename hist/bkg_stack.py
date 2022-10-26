@@ -134,6 +134,6 @@ def generic_ntuple(loc=None,all_stack=None,file='file', vector='type', figname='
             
     pd_merge_df = pd.concat([ ccbar_pd_df, mixed_pd_df, charged_pd_df, uubar_pd_df, ddbar_pd_df, ssbar_pd_df, taupair_pd_df])
 
-    #variables.clear()
+    variables = []
     return pd_merge_df
 

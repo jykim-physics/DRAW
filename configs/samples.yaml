@@ -60,3 +60,21 @@ train_v2_extraction_pi0veto:
   ssbar: "/ssbar/train_v2_extraction_pi0veto_ssbar_recon_output_0*.root"
   uubar: "/uubar/train_v2_extraction_pi0veto_uubar_recon_output_0*.root"
   taupair: "/taupair/train_v2_extraction_pi0veto_taupair_recon_output_0*.root"  
+  
+train_v2_extraction_pi0veto_sig_bkg:
+  ccbar: "/ccbar/train_v2_extraction_pi0veto_sig_bkg_ccbar_recon_output_0*.root"
+  charged: "/charged/train_v2_extraction_pi0veto_sig_bkg_charged_recon_output_0*.root"
+  mixed: "/mixed/train_v2_extraction_pi0veto_sig_bkg_mixed_recon_output_0*.root"
+  ddbar: "/ddbar/train_v2_extraction_pi0veto_sig_bkg_ddbar_recon_output_0*.root"
+  ssbar: "/ssbar/train_v2_extraction_pi0veto_sig_bkg_ssbar_recon_output_0*.root"
+  uubar: "/uubar/train_v2_extraction_pi0veto_sig_bkg_uubar_recon_output_0*.root"
+  taupair: "/taupair/train_v2_extraction_pi0veto_sig_bkg_taupair_recon_output_0*.root"    
+ 
+pre_extraction:
+  ccbar: "/ccbar/pre_extraction_ccbar_recon_output_0*.root"
+  charged: "/charged/pre_extraction_charged_recon_output_0*.root"
+  mixed: "/mixed/pre_extraction_mixed_recon_output_0*.root"
+  ddbar: "/ddbar/pre_extraction_ddbar_recon_output_0*.root"
+  ssbar: "/ssbar/pre_extraction_ssbar_recon_output_0*.root"
+  uubar: "/uubar/pre_extraction_uubar_recon_output_0*.root"
+  taupair: "/taupair/pre_extraction_taupair_recon_output_0*.root"
