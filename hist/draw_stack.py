@@ -290,7 +290,7 @@ def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name
             plt.hist(data_list[vector][var], bins=bins, histtype='stepfilled', stacked=True,label=labels,color=colors,edgecolor='black')
         ax = plt.gca()
         
-        
+#         print(data_list[vector])
         lumi(l=total_lumi)
         watermark()    
         
@@ -394,8 +394,8 @@ def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name
 #         plt.tight_layout()   
         plt.title(plot_title)
         
-        full_figname = "/home/jykim/nas/plots/genericMC/" + vector + "/" + var + "_" + figname + ".png"
-        plt.savefig( full_figname,bbox_inches = 'tight' ) 
+#         full_figname = "/home/jykim/nas/plots/genericMC/" + vector + "/" + var + "_" + figname + ".png"
+#         plt.savefig( full_figname,bbox_inches = 'tight' ) 
         
         plt.show()
         plt.clf()
