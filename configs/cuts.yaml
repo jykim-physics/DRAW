@@ -9,7 +9,7 @@ rho_extraction:
   - 'abs(Dstarp_Q - 0.00593)<0.0006'
 
 antiKstar_extraction:
-  - 'abs(antiKstar_InvM - 0.89555)<0.22'
+  - 'abs(antiKstar_InvM - 0.89555)<0.06'
   - 'Dstarp_CMS_p > 2.17'
   - 'abs(Dstarp_Q - 0.00593)<0.0006'
 

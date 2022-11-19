@@ -16,6 +16,7 @@ def lumi(l="$1\; \mathrm{ab}^{-1}$", px=0.7, py=0.900,  *args, **kwargs):
     plt.text(px, py, "$\int\,L\,\mathrm{dt}\;=\;$" + l, transform=plt.gca().transAxes, *args, **kwargs )
 
 def watermark(t=None,logo="Belle II", px=0.033, py=0.915, fontsize=16, alpha=0.8, alpha_logo=0.95, shift=0.15, bstyle='italic', *args, **kwargs):
+       
     """
 
     Args:
@@ -292,6 +293,189 @@ def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name
         
 #         print(data_list[vector])
         lumi(l=total_lumi)
+        watermark(t="",logo="MC15ri")    
+        
+        if var_unit[var]=="":
+            
+#             xlabel = "$" + var_name[var] + "$"
+            xlabel =  var_name[var]
+        else:    
+            print(str(var_name[var]))
+            CORRECT_VAR_NAME_DICT = {"antiKstar_InvM":r"M(\bar{K}^{*0})", "Rho_InvM": r"M(\rho^0)"}
+            if var in list(CORRECT_VAR_NAME_DICT.keys()):
+                var_name[var] = CORRECT_VAR_NAME_DICT[var]
+            else:
+                pass
+            xlabel = "$" + var_name[var] + " \; [" + str(var_unit[var]) + "]$"
+            print(xlabel)
+        ax.set_xlabel(xlabel)
+        
+        exceptlist = ['__ncandidates__','__experiment__','__run__', '__event__','D0_isSignal','Dstarp_isSignal'] 
+        if var in exceptlist:
+            pass
+        elif var in list(['Dstarp_CMS_p','Phi_InvM','Rho_InvM','antiKstar_InvM','Omega_InvM']):
+            ax.set_xlim(changed_bins[0], changed_bins[-1])
+            width = changed_bins[1]-changed_bins[0]
+        elif var == "D0_M":
+            ax.set_xlim(1.665,2.065)
+            x_axis = ax.get_xbound()
+            width = (x_axis[1] - x_axis[0])/bins 
+        else:
+            ax.set_xlim(data_merge_pd.min(), data_merge_pd.max())  
+            x_axis = ax.get_xbound()
+            width = (x_axis[1] - x_axis[0])/bins  
+
+        
+        
+#         ax2 = ax.twinx()
+
+        
+
+        if var == "Dstarp_Q":
+            ax.set_ylabel('Entries'+' /' + '$(' + ' '  + "{0:.5f}".format(width).rstrip('0').rstrip('.') + var_unit[var] + ' )$')
+        else:
+            ax.set_ylabel('Entries'+' /' + '$(' + ' '  + "{0:.3f}".format(width).rstrip('0').rstrip('.') + var_unit[var] + ' )$')
+            
+
+        if var == "Pi0_Prob":
+            #plt.yscale("log")
+            plt.axvline(x=[0.9], ymin=0, ymax=0.9, color='r', ls='--', lw=2)
+            
+            
+        if var == "D0_M":
+            if vector == 'phi':
+                
+                ax.set_ylim(0, 330)
+#                 plt.ylim(0,4000)
+            if vector == 'rho':
+                pass
+#                 ax.set_ylim(0, 140000)
+#                 plt.ylim(0,140000)
+#                 ax.set_ylim(0, 125000)
+#                 plt.ylim(0,2000)
+            if vector == 'antiKstar':
+                pass
+#                 ax.set_ylim(0, 9000)
+            if vector == 'omega':
+                pass
+#                 ax.set_ylim(0, 300)
+
+#             ax.set_xlim(1.67, 2.065)
+#             plt.xlim(1.67,2.06)
+        elif var == "Phi_InvM":
+            plt.axvline(x=[1.0195-0.011], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+            plt.axvline(x=[1.0195+0.011], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+        elif var == "Rho_InvM":
+            plt.axvline(x=[0.77526-0.150], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+            plt.axvline(x=[0.77526+0.150], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+        elif var == "antiKstar_InvM":
+            plt.axvline(x=[0.89555-0.06], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+            plt.axvline(x=[0.89555+0.06], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+        elif var == "Omega_InvM":
+            plt.axvline(x=[0.78265-0.015], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+            plt.axvline(x=[0.78265+0.015], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
+        elif var == "Dstarp_CMS_p":
+            if vector == 'phi':
+                plt.axvline(x=[2.42], ymin=0, ymax=0.85, color='r', ls='--', lw=2)
+            elif vector == 'rho':
+                plt.axvline(x=[2.72], ymin=0, ymax=0.85, color='r', ls='--', lw=2)     
+            elif vector == 'antiKstar':
+                plt.axvline(x=[2.30], ymin=0, ymax=0.85, color='r', ls='--', lw=2)
+            elif vector == 'omega':
+                plt.axvline(x=[2.70], ymin=0, ymax=0.85, color='r', ls='--', lw=2)                  
+        elif var == "Dstarp_Q":
+            if vector == 'phi' or 'rho':
+                plt.axvline(x=[0.00593-0.0006], ymin=0, ymax=0.9, color='r', ls='--', lw=2)
+                plt.axvline(x=[0.00593+0.0006], ymin=0, ymax=0.9, color='r', ls='--', lw=2)
+
+                
+                
+        else:
+            pass
+
+        # Shrink current axis by 20%
+        box = ax.get_position()
+        ax.set_position([box.x0, box.y0, box.width , box.height])
+
+        # Put a legend to the right of the current axis
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))        
+                
+#         ax.legend(bbox_to_anchor=(1.05, 1))
+#         plt.legend(bbox_to_anchor=(1.05,1))
+#         plt.legend(loc='best',px=1.078, py=1)
+#         plt.tight_layout()   
+        plt.title(plot_title)
+        
+#         full_figname = "/home/jykim/nas/plots/genericMC/" + vector + "/" + var + "_" + figname + ".png"
+#         plt.savefig( full_figname,bbox_inches = 'tight' ) 
+        
+        plt.show()
+        plt.clf()
+        
+        
+    print(data_list.keys())
+    
+def draw_stack_no_signal_omega(df=None, vector=None,bins=None, var_unit=None, var_name=None,plot_title=None, total_lumi=None, draw_variables=None,figname=None):
+    
+    bins_range = read_yaml_to_dict('bins')
+    print(bins_range['D0_M'][0])
+    if draw_variables==None:
+        variables = list(df.columns)
+    else:
+        variables = draw_variables
+    px = 1/plt.rcParams['figure.dpi']
+    
+    
+    ccbar_bkg = df[df['class']=='ccbar']
+    signal    = df[df['Dstarp_isSignal']==1]
+    
+    charged_bkg = df[df['class']=='charged']
+    mixed_bkg = df[df['class']=='mixed']
+    uubar_bkg = df[df['class']=='uubar']
+    ddbar_bkg = df[df['class']=='ddbar']
+    ssbar_bkg = df[df['class']=='ssbar']
+    taupair_bkg = df[df['class']=='taupair']
+    
+    omegapi0_bkg = df[df['class']=='omegapi0']
+    omegaeta_bkg = df[df['class']=='omegaeta']
+    omegapippimpi0eta_bkg = df[df['class']=='pippimpi0eta']
+    
+    data_list = {}
+    data_list['phi'] = dict()
+    data_list['rho'] = dict()
+    data_list['antiKstar'] = dict()
+    data_list['omega'] = dict()
+    
+    labels = ['mixed', 'charged', 'uubar', 'ddbar', 'ssbar', 'taupair','ccbar', 'signal', ]
+    variables.remove('class')
+    
+    colors=b2helix(9)
+    
+    var_unit, var_name = var_name_unit_correct(var_unit=var_unit, var_name=var_name, variables=variables)
+    
+    for var in variables:
+        labels = ['mixed', 'charged', 'uubar', 'ddbar', 'ssbar', 'taupair','ccbar',r'$D^0 \to \omega \pi^0$',r'$D^0 \to \omega \eta$', r'$D^0 \to \pi^+ \pi^- \pi^0 \eta$']
+        data_list[vector][var]  = [mixed_bkg[var], charged_bkg[var], uubar_bkg[var], ddbar_bkg[var], ssbar_bkg[var], taupair_bkg[var], ccbar_bkg[var], omegapi0_bkg[var], omegaeta_bkg[var]]
+#             data_list[vector][var]  = [mixed_bkg[var], charged_bkg[var], uubar_bkg[var], ddbar_bkg[var], ssbar_bkg[var], taupair_bkg[var], ccbar_bkg[var], omegapi0_bkg[var], omegaeta_bkg[var], omegapippimpi0eta_bkg[var]]  
+        data_merge_pd = pd.concat([mixed_bkg[var], charged_bkg[var], uubar_bkg[var], ddbar_bkg[var], ssbar_bkg[var], taupair_bkg[var], ccbar_bkg[var], omegapi0_bkg[var], omegaeta_bkg[var] ], ignore_index=True)
+#         data_merge_pd = pd.concat([mixed_bkg[var], charged_bkg[var], uubar_bkg[var], ddbar_bkg[var], ssbar_bkg[var], taupair_bkg[var], ccbar_bkg[var], omegapi0_bkg[var], omegaeta_bkg[var], omegapippimpi0eta_bkg[var] ], ignore_index=True)
+        
+        
+        if var in list(bins_range.keys()):
+            if var in list(['Dstarp_CMS_p']):
+                changed_bins = np.linspace(*eval(bins_range[var][vector][0]))
+                print(changed_bins)
+            else:
+                changed_bins = np.linspace(*eval(bins_range[var][0]))
+            
+            plt.hist(data_list[vector][var], bins=changed_bins, histtype='stepfilled', stacked=True,label=labels,color=colors,edgecolor='black')
+            
+        else:
+            plt.hist(data_list[vector][var], bins=bins, histtype='stepfilled', stacked=True,label=labels,color=colors,edgecolor='black')
+        ax = plt.gca()
+        
+#         print(data_list[vector])
+        lumi(l=total_lumi)
         watermark()    
         
         if var_unit[var]=="":
@@ -312,7 +496,7 @@ def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name
         exceptlist = ['__ncandidates__','__experiment__','__run__', '__event__','D0_isSignal','Dstarp_isSignal'] 
         if var in exceptlist:
             pass
-        elif var in list(['D0_M','Dstarp_CMS_p','Phi_InvM','Rho_InvM','antiKstar_InvM','Omega_InvM']):
+        elif var in list(['Dstarp_CMS_p','Phi_InvM','Rho_InvM','antiKstar_InvM','Omega_InvM']):
             ax.set_xlim(changed_bins[0], changed_bins[-1])
             width = changed_bins[1]-changed_bins[0]
         else:
@@ -345,11 +529,11 @@ def draw_stack_no_signal(df=None, vector=None,bins=None, var_unit=None, var_name
             if vector == 'rho':
                 pass
 #                 ax.set_ylim(0, 140000)
-#                 plt.ylim(0,140000)
+                plt.ylim(0,2000)
 #                 ax.set_ylim(0, 125000)
 #                 plt.ylim(0,125000)
-            ax.set_xlim(1.665, 2.065)
-            plt.xlim(1.665,2.065)
+#             ax.set_xlim(1.67, 2.065)
+#             plt.xlim(1.67,2.06)
         elif var == "Phi_InvM":
             plt.axvline(x=[1.0195-0.011], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
             plt.axvline(x=[1.0195+0.011], ymin=0, ymax=0.80, color='r', ls='--', lw=2)
